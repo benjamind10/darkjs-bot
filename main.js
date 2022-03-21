@@ -33,17 +33,18 @@ client.on('messageCreate', message => {
 
   if (command === 'ping') {
     client.commands.get('ping').execute(message, args);
-  } else if (command === 'uptime') {
-    let days = Math.floor(client.uptime / 86400000);
-    let hours = Math.floor(client.uptime / 3600000) % 24;
-    let minutes = Math.floor(client.uptime / 60000) % 60;
-    let seconds = Math.floor(client.uptime / 1000) % 60;
-
-    message.channel.send(
-      `Uptime: ${days}d ${hours}h ${minutes}m ${seconds}s`
-    );
-  } else if (command === 'version' || command === 'ver') {
+  } else if (command === 'uptime' || command === 'up') {
+    client.commands.get('uptime').execute(message, args, client);
+  } else if (
+    command === 'version' ||
+    command === 'ver' ||
+    command === 'about'
+  ) {
     client.commands.get('version').execute(message, args);
+  } else if (command === 'clear') {
+    client.commands.get('clear').execute(message, args);
+  } else if (command === 'git' || command === 'github') {
+    client.commands.get('git').execute(message, args);
   }
 });
 
