@@ -45,6 +45,8 @@ client.on('messageCreate', message => {
     client.commands.get('clear').execute(message, args);
   } else if (command === 'git' || command === 'github') {
     client.commands.get('git').execute(message, args);
+  } else if (command === 'cmdlist') {
+    client.commands.get('cmdlist').execute(message, args);
   }
 });
 
