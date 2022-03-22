@@ -2,8 +2,9 @@ module.exports = {
   name: 'whoami',
   descrption: 'This a whoami commands',
   execute(message, args) {
+    const { admin_role } = require('../config.json');
     let id = '692963810193178664';
-    let isAdmin = message.guild.roles.cache.get(id);
+    let isAdmin = message.guild.roles.cache.get(admin_role);
     console.log(isAdmin);
 
     isAdmin

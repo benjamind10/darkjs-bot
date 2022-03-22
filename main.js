@@ -49,6 +49,10 @@ client.on('messageCreate', message => {
     client.commands.get('cmdlist').execute(message, args);
   } else if (command === 'whoami') {
     client.commands.get('whoami').execute(message, args);
+  } else if (command === 'kick') {
+    client.commands.get('kick').execute(message, args);
+  } else if (command === 'ban') {
+    client.commands.get('ban').execute(message, args);
   }
 });
 
