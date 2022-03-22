@@ -47,6 +47,8 @@ client.on('messageCreate', message => {
     client.commands.get('git').execute(message, args);
   } else if (command === 'cmdlist') {
     client.commands.get('cmdlist').execute(message, args);
+  } else if (command === 'whoami') {
+    client.commands.get('whoami').execute(message, args);
   }
 });
 
