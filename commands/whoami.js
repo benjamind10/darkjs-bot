@@ -1,7 +1,7 @@
 module.exports = {
   name: 'whoami',
   descrption: 'This a whoami commands',
-  execute(message, args) {
+  execute(client, message, args) {
     const { admin_role } = require('../config.json');
 
     if (message.member.roles.cache.has(admin_role)) {

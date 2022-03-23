@@ -1,7 +1,7 @@
 module.exports = {
   name: 'cmdlist',
   descrption: 'This a commands list',
-  execute(message, args, Discord) {
+  execute(client, message, args) {
     const { MessageEmbed } = require('discord.js');
 
     let commands = [];

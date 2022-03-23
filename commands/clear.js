@@ -1,18 +1,21 @@
-const { MessageSelectMenu } = require('discord.js');
-
 module.exports = {
   name: 'clear',
   description: 'Clear messages!',
-  async execute(message, args) {
+  async execute(client, message, args) {
     const { admin_role } = require('../config.json');
     if (message.member.roles.cache.has(admin_role)) {
       if (!args[0])
-        return message.reply('Please enter the amount of messages to clear!');
+        return message.reply(
+          'Please enter the amount of messages to clear!'
+        );
 
-      if (isNaN(args[0])) return message.reply('Please enter a number!');
+      if (isNaN(args[0]))
+        return message.reply('Please enter a number!');
 
       if (args[0] > 100)
-        return message.reply("You can't delete more than 100 messages!");
+        return message.reply(
+          "You can't delete more than 100 messages!"
+        );
 
       if (args[0] < 1)
         return message.reply('You must delete atleast one message!');

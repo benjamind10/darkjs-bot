@@ -1,7 +1,7 @@
 module.exports = {
   name: 'kick',
   description: 'This is a kick command',
-  execute(message, args) {
+  execute(client, message, args) {
     const { admin_role } = require('../config.json');
     //   if you want to validate with roles...
     if (message.member.roles.cache.has(admin_role)) {
