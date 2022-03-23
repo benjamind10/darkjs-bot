@@ -26,6 +26,8 @@ A Discord bot written in nodejs for channel management. Access managed by roles.
 
 ## Usage:
 
+Config the bot using the config-example.json then run:
+
 `node main.js`
 
 <a name="languages"></a>

@@ -10,7 +10,6 @@ module.exports = {
     // else message.channel.send('You don't have the right permissions')
     let platform = os.platform();
     let version = os.release();
-    console.log(platform);
     const os_info = platform.charAt(0).toUpperCase() + platform.slice(1);
 
     message.channel.send(
