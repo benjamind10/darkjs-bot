@@ -3,6 +3,11 @@ module.exports = {
   descrption: 'This a version command',
   execute(message, args) {
     const os = require('os');
+    revision = require('child_process')
+      .execSync('git rev-parse HEAD')
+      .toString()
+      .trim()
+      .slice(0, 7);
     // const { admin_role } = require('../config.json');
     // if you want to validate with roles...
     // if (message.member.roles.cache.has(admin_role))
@@ -13,7 +18,12 @@ module.exports = {
     const os_info = platform.charAt(0).toUpperCase() + platform.slice(1);
 
     message.channel.send(
-      'DarK`BoT by Shiva187 ver: 0.0.1 Running on: ' + os_info + ' ' + version
+      'DarK`BoT by Shiva187 rev: ' +
+        revision +
+        ' Running on: ' +
+        os_info +
+        ' ' +
+        version
     );
   },
 };

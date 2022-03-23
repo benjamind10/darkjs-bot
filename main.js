@@ -25,8 +25,7 @@ client.once('ready', () => {
 });
 
 client.on('messageCreate', message => {
-  if (!message.content.startsWith(prefix) || message.author.bot)
-    return;
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).split(/ +/);
   const command = args.shift().toLowerCase();
@@ -53,6 +52,8 @@ client.on('messageCreate', message => {
     client.commands.get('kick').execute(message, args);
   } else if (command === 'ban') {
     client.commands.get('ban').execute(message, args);
+  } else if (command === 'guess') {
+    client.commands.get('guess').execute(message, args);
   }
 });
 
