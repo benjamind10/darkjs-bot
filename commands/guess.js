@@ -1,6 +1,7 @@
 module.exports = {
   name: 'guess',
   description: 'guess a number 1-100',
+  permissions: ['SEND_MESSAGES'],
   async execute(client, message, args, Discord) {
     console.log(collector);
     let num = 0;

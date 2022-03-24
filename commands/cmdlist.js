@@ -1,5 +1,6 @@
 module.exports = {
   name: 'cmdlist',
+  permissions: ['SEND_MESSAGES'],
   descrption: 'This a commands list',
   execute(client, message, args) {
     const { MessageEmbed } = require('discord.js');

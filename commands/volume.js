@@ -5,6 +5,7 @@ module.exports = {
   aliases: ['vol'],
   utilisation: `{prefix}volume [1-${maxVol}]`,
   voiceChannel: true,
+  permissions: ['SEND_MESSAGES'],
 
   execute(client, message, args) {
     const queue = client.player.getQueue(message.guild.id);

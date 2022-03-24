@@ -2,6 +2,7 @@ module.exports = {
   name: 'uptime',
   aliases: ['up'],
   descrption: 'This a uptime command',
+  permissions: ['SEND_MESSAGES'],
   execute(client, message, args) {
     const os = require('os');
 

@@ -5,6 +5,7 @@ module.exports = {
   aliases: ['p'],
   utilisation: '{prefix}play [song name/URL]',
   voiceChannel: true,
+  permissions: ['SEND_MESSAGES'],
 
   async execute(client, message, args) {
     if (!args[0])

@@ -2,6 +2,7 @@ module.exports = {
   name: 'version',
   aliases: ['ver', 'about'],
   descrption: 'This a version command',
+  permissions: ['SEND_MESSAGES'],
   execute(client, message, args) {
     const os = require('os');
     const revision = require('child_process')

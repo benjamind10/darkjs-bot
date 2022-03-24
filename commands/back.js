@@ -1,5 +1,6 @@
 module.exports = {
   name: 'back',
+  permissions: ['SEND_MESSAGES'],
   aliases: [],
   utilisation: '{prefix}back',
   voiceChannel: true,

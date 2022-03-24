@@ -9,6 +9,7 @@ module.exports = {
   aliases: ['np'],
   utilisation: '{prefix}nowplaying',
   voiceChannel: true,
+  permissions: ['SEND_MESSAGES'],
 
   execute(client, message) {
     const queue = client.player.getQueue(message.guild.id);

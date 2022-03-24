@@ -6,6 +6,7 @@ module.exports = {
   aliases: [],
   utilisation: '{prefix}search [song name]',
   voiceChannel: true,
+  permissions: ['SEND_MESSAGES'],
 
   async execute(client, message, args) {
     if (!args[0])

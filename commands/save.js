@@ -4,6 +4,7 @@ module.exports = {
   aliases: [],
   utilisation: '{prefix}save',
   voiceChannel: true,
+  permissions: ['SEND_MESSAGES'],
 
   async execute(client, message) {
     const queue = client.player.getQueue(message.guild.id);

@@ -1,27 +1,15 @@
 module.exports = {
   name: 'kick',
   description: 'This is a kick command',
+  permissions: ['ADMINISTRATOR'],
   execute(client, message, args) {
-    const { ADMIN_ROLE } = require('../config');
-    let isAdmin;
-
-    for (role in ADMIN_ROLE) {
-      if (message.member.roles.cache.has(ADMIN_ROLE[role])) {
-        isAdmin = true;
-      } else isAdmin = false;
+    const member = message.mentions.users.first();
+    if (member) {
+      const memberTarget = message.guild.members.cache.get(member.id);
+      memberTarget.kick();
+      message.channel.send('User has been kicked');
+    } else {
+      message.channel.send("You couldn't kick that member.");
     }
-    if (isAdmin) {
-      const member = message.mentions.users.first();
-      if (member) {
-        const memberTarget = message.guild.members.cache.get(
-          member.id
-        );
-        memberTarget.kick();
-        message.channel.send('User has been kicked');
-      } else {
-        message.channel.send("You couldn't kick that member.");
-      }
-    } else
-      message.channel.send("You don't have the right permissions");
   },
 };

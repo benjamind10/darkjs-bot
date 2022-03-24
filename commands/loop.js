@@ -5,6 +5,7 @@ module.exports = {
   aliases: ['lp'],
   utilisation: '{prefix}loop <queue>',
   voiceChannel: true,
+  permissions: ['SEND_MESSAGES'],
 
   execute(client, message, args) {
     const queue = client.player.getQueue(message.guild.id);
