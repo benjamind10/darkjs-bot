@@ -2,8 +2,8 @@ module.exports = {
   name: 'clear',
   description: 'Clear messages!',
   async execute(client, message, args) {
-    const { admin_role } = require('../config.json');
-    if (message.member.roles.cache.has(admin_role)) {
+    const { ADMIN_ROLE } = require('../config');
+    if (message.member.roles.cache.has(ADMIN_ROLE)) {
       if (!args[0])
         return message.reply(
           'Please enter the amount of messages to clear!'
