@@ -1,5 +1,6 @@
 module.exports = {
   name: 'version',
+  aliases: ['ver', 'about'],
   descrption: 'This a version command',
   execute(client, message, args) {
     const os = require('os');
