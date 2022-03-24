@@ -12,6 +12,7 @@ module.exports = {
 
     try {
       member.roles.add(role);
+      message.reply(`Role \`${roleName}\` added to: ${member}`);
     } catch (error) {
       message.channel.send('Error');
     }

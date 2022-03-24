@@ -12,6 +12,7 @@ module.exports = {
 
     try {
       member.roles.remove(role);
+      message.reply('Role removed.');
     } catch (error) {
       message.channel.send('Error');
     }
