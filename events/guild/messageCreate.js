@@ -35,13 +35,16 @@ module.exports = (Discord, client, message) => {
     'MANAGE_EMOJIS',
   ];
 
-  if (!message.content.startsWith(prefix) || message.author.bot)
-    return;
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).split(/ +/);
   const cmd = args.shift().toLowerCase();
 
   const command = client.commands.get(cmd);
+
+  if (command === undefined) {
+    return message.reply('No command found');
+  }
 
   if (command.permissions.length) {
     let invalidPerms = [];
@@ -54,9 +57,7 @@ module.exports = (Discord, client, message) => {
       }
     }
     if (invalidPerms.length) {
-      return message.channel.send(
-        `Missing Permissions: \`${invalidPerms}\``
-      );
+      return message.channel.send(`Missing Permissions: \`${invalidPerms}\``);
     }
   }
 
