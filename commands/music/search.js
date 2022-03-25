@@ -48,7 +48,7 @@ module.exports = {
 
     embed.setTimestamp();
     embed.setFooter({
-      text: 'by Umut Bayraktar ❤️',
+      text: 'by Shiva187',
       iconURL: message.author.avatarURL({ dynamic: true }),
     });
 
