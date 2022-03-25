@@ -2,7 +2,7 @@ module.exports = {
   name: 'mute',
   descrption: 'This a command mutes a user',
   execute(client, message, args) {
-    const { ADMIN_ROLE } = require('../config');
+    const { ADMIN_ROLE } = require('../../config');
     //   if you want to validate with roles...
     if (message.member.roles.cache.has(ADMIN_ROLE)) {
       const target = message.mentions.users.first();

@@ -3,7 +3,7 @@ module.exports = {
   descrption: 'This a whoami commands',
   permissions: ['SEND_MESSAGES'],
   execute(client, message, args) {
-    const { ADMIN_ROLE } = require('../config');
+    const { ADMIN_ROLE } = require('../../config');
     let isAdmin;
 
     for (role in ADMIN_ROLE) {
