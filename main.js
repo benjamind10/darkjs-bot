@@ -1,10 +1,5 @@
 const { Player } = require('discord-player');
-const {
-  Client,
-  Intents,
-  Discord,
-  Collection,
-} = require('discord.js');
+const { Client, Intents, Discord, Collection } = require('discord.js');
 const { readdirSync } = require('fs');
 
 let client = new Client({
@@ -23,8 +18,7 @@ client.player = new Player(client, client.config.opt.discordPlayer);
 const player = client.player;
 
 player.on('trackStart', (queue, track) => {
-  if (!client.config.opt.loopMessage && queue.repeatMode !== 0)
-    return;
+  if (!client.config.opt.loopMessage && queue.repeatMode !== 0) return;
   queue.metadata.send({
     content: `🎵 Music started playing: **${track.title}** -> Channel: **${queue.connection.channel.name}** 🎧`,
   });
@@ -61,4 +55,4 @@ player.on('queueEnd', queue => {
   require(`./handlers/${handler}`)(client, Discord);
 });
 
-client.login(client.config.TOKEN);
+client.login('OTU1MjI3OTg2MzE4MjI1NDU4.YjenYw.G92Z51UpvpkTm3oKTm2a9QFVzLI');
