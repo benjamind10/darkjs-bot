@@ -5,10 +5,9 @@ module.exports = {
   async execute(client, message, args) {
     const member = message.mentions.members.first();
 
-    const roleName = args[1];
-    const role = message.guild.roles.cache.find(
-      role => role.name === roleName
-    );
+    args.shift();
+    const roleName = args.slice(0).join(' ');
+    const role = message.guild.roles.cache.find(role => role.name === roleName);
 
     try {
       member.roles.add(role);
