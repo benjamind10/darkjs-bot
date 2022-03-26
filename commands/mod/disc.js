@@ -6,6 +6,9 @@ module.exports = {
     const member = message.mentions.users.first();
     if (member) {
       const memberTarget = message.guild.members.cache.get(member.id);
+      if (!memberTarget.voice.channel) {
+        return message.reply('User is not in a channel');
+      }
       memberTarget.voice.disconnect();
       message.channel.send('User has been disconnected');
     } else {

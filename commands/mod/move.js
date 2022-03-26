@@ -14,6 +14,9 @@ module.exports = {
       const VCchannel = message.guild.channels.cache.find(
         channel => channel.name === pickedChannel
       );
+      if (!memberTarget.voice.channel) {
+        return message.reply('User is not in a channel');
+      }
       memberTarget.voice.setChannel(VCchannel);
       message.channel.send('User has been moved');
     } else {
