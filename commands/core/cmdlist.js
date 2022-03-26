@@ -3,33 +3,21 @@ module.exports = {
   permissions: ['SEND_MESSAGES'],
   descrption: 'This a commands list',
   execute(client, message, args) {
-    // const { MessageEmbed } = require('discord.js');
+    const { MessageEmbed } = require('discord.js');
 
-    // let commands = [];
-    // const fs = require('fs');
-    // const commandFiles = fs
-    //   .readdirSync('./commands')
-    //   .filter(file => file.endsWith('.js'));
+    let commands = client.commands.map(command => {
+      return command.name;
+    });
+    const finalCommands = commands.join('\r\n');
 
-    // for (const file of commandFiles) {
-    //   commands.push(file);
-    // }
+    const newEmbed = new MessageEmbed()
+      .setTitle('Command List')
+      .setDescription('This is all the commands the bot has')
+      .addFields({
+        name: 'List of working commands:',
+        value: finalCommands,
+      });
 
-    // const cmdlist = commands.map(e => {
-    //   return e.slice(0, -3);
-    // });
-
-    // const finalCommands = cmdlist.join('\r\n');
-
-    // const newEmbed = new MessageEmbed()
-    //   .setTitle('Command List')
-    //   .setDescription('This is all the commands the bot has')
-    //   .addFields({
-    //     name: 'List of working commands:',
-    //     value: finalCommands,
-    //   });
-
-    // message.channel.send({ embeds: [newEmbed] });
-    return message.reply('Currently being worked on');
+    message.channel.send({ embeds: [newEmbed] });
   },
 };
