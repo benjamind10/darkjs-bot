@@ -55,4 +55,4 @@ player.on('queueEnd', queue => {
   require(`./handlers/${handler}`)(client, Discord);
 });
 
-client.login('OTU1MjI3OTg2MzE4MjI1NDU4.YjenYw.G92Z51UpvpkTm3oKTm2a9QFVzLI');
+client.login(client.config.TOKEN);
