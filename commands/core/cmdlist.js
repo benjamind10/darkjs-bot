@@ -25,7 +25,7 @@ module.exports = {
       })
       .addFields({
         name: 'Help',
-        value: `Type ${px}help <command name> for description.`,
+        value: `Type \`${px}help <command name>\` for description.`,
       });
 
     message.channel.send({ embeds: [newEmbed] });
