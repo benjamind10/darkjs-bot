@@ -1,7 +1,7 @@
 module.exports = {
   name: 'role',
   description: 'This command adds a role',
-  permissions: ['ADMINISTRATOR'],
+  permissions: ['ADMINISTRATOR', 'MANAGE_ROLES'],
   async execute(client, message, args) {
     const member = message.mentions.members.first();
 

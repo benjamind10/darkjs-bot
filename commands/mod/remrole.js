@@ -1,7 +1,7 @@
 module.exports = {
   name: 'remrole',
   description: 'This command removes a role',
-  permissions: ['ADMINISTRATOR'],
+  permissions: ['ADMINISTRATOR', 'MANAGE_ROLES'],
   async execute(client, message, args) {
     const member = message.mentions.members.first();
 

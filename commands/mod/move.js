@@ -1,7 +1,7 @@
 module.exports = {
   name: 'move',
   description: 'This is command moves users from voice chat',
-  permissions: ['ADMINISTRATOR'],
+  permissions: ['ADMINISTRATOR', 'MOVE_MEMBERS'],
   execute(client, message, args) {
     if (!args[1]) {
       return message.reply('You must specify a channel');
