@@ -4,6 +4,7 @@ module.exports = {
   name: 'weather',
   description: 'Shows Weather for the provided place',
   permissions: ['SEND_MESSAGES'],
+  cooldown: 10,
   async execute(client, message, args) {
     const name = args.join(' ');
     const place = args.join('-');
