@@ -4,6 +4,7 @@ module.exports = {
   name: 'invite',
   description: "Get the bot's",
   permissions: ['ADMINISTRATOR'],
+  cooldown: 10,
   async execute(client, message, args) {
     let embed = new Discord.MessageEmbed()
       .setTitle('Invite Me')

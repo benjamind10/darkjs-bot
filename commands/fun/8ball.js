@@ -4,6 +4,7 @@ module.exports = {
   name: '8ball',
   description: 'Fortune teller',
   permissions: ['SEND_MESSAGES'],
+  cooldown: 10,
   async execute(client, message, args) {
     if (args.length == 0)
       return message.channel

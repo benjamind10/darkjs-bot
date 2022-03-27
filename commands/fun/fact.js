@@ -6,6 +6,7 @@ module.exports = {
   category: 'fun',
   description: 'sends a cool fact',
   permissions: ['SEND_MESSAGES'],
+  cooldown: 10,
   usage: '[command]',
   async execute(client, message, args) {
     //command

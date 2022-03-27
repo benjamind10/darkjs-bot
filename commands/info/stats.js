@@ -11,6 +11,7 @@ module.exports = {
   name: 'stats',
   descriptiom: "Get DarK`BoT's Stats",
   permissions: ['SEND_MESSAGES'],
+  cooldown: 10,
   async execute(client, message, args, level) {
     // eslint-disable-line no-unused-vars
     try {

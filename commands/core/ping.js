@@ -4,7 +4,7 @@ module.exports = {
   aliases: [],
   utilisation: '{prefix}ping',
   permissions: ['SEND_MESSAGES'],
-
+  cooldown: 10,
   execute(client, message) {
     const start = Date.now();
     message.channel.send('Pong!').then(m => {
@@ -13,14 +13,8 @@ module.exports = {
         .setTitle(client.user.username + ' - Pong!')
         .setThumbnail(client.user.displayAvatarURL())
         .addField(`Message Ping`, `\`${Date.now() - start}ms\` 🛰️`)
-        .addField(
-          `Message Latency`,
-          `\`${m.createdTimestamp - start}ms\` 🛰️`
-        )
-        .addField(
-          `API Latency`,
-          `\`${Math.round(client.ws.ping)}ms\` 🛰️`
-        )
+        .addField(`Message Latency`, `\`${m.createdTimestamp - start}ms\` 🛰️`)
+        .addField(`API Latency`, `\`${Math.round(client.ws.ping)}ms\` 🛰️`)
         .setTimestamp()
         .setFooter({
           text: 'DarK`BoT by Shiva187',

@@ -1,3 +1,6 @@
+const cooldowns = new Map();
+const { Collection } = require('discord.js');
+
 module.exports = (Discord, client, message) => {
   const prefix = client.config.px;
 
@@ -60,6 +63,35 @@ module.exports = (Discord, client, message) => {
       return message.channel.send(`Missing Permissions: \`${invalidPerms}\``);
     }
   }
+  if (!cooldowns.has(command.name)) {
+    cooldowns.set(command.name, new Collection());
+  }
 
-  if (command) command.execute(client, message, args, Discord);
+  const current_time = Date.now();
+  const time_stamps = cooldowns.get(command.name);
+  const cooldown_amount = command.cooldown * 1000;
+
+  if (time_stamps.has(message.author.id)) {
+    const expiration_time =
+      time_stamps.get(message.author.id) + cooldown_amount;
+
+    if (current_time < expiration_time) {
+      const time_left = (expiration_time - current_time) / 1000;
+
+      return message.reply(
+        `Please wait ${time_left.toFixed(1)} more seconds before using ${
+          command.name
+        }`
+      );
+    }
+  }
+
+  time_stamps.set(message.author.id, current_time);
+
+  try {
+    command.execute(client, message, args, Discord);
+  } catch (err) {
+    message.reply('There was an error trying to execute this command.');
+    console.log(err);
+  }
 };

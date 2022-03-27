@@ -5,6 +5,7 @@ module.exports = {
   name: 'gif',
   description: 'Get gifs based on your search',
   permissions: ['EMBED_LINKS', 'MANAGE_MESSAGES'],
+  cooldown: 10,
   async execute(client, message, args) {
     if (args.length === 0) {
       message.channel.send('No Search terms!');

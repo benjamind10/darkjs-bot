@@ -5,6 +5,7 @@ module.exports = {
   description: 'Get the Command List',
   aliases: ['commands', 'cmd', 'h'],
   permissions: ['SEND_MESSAGES'],
+  cooldown: 10,
   async execute(client, message, args) {
     if (args[0]) {
       let command = args[0];

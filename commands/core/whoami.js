@@ -2,6 +2,7 @@ module.exports = {
   name: 'whoami',
   descrption: 'This a whoami commands',
   permissions: ['SEND_MESSAGES'],
+  cooldown: 10,
   execute(client, message, args) {
     const { ADMIN_ROLE } = require('../../config');
     let isAdmin;

@@ -3,6 +3,7 @@ module.exports = {
   aliases: ['ver', 'about'],
   descrption: 'This a version command',
   permissions: ['SEND_MESSAGES'],
+  cooldown: 10,
   execute(client, message, args) {
     const os = require('os');
     const revision = require('child_process')
@@ -17,8 +18,7 @@ module.exports = {
     // else message.channel.send('You don't have the right permissions')
     const platform = os.platform();
     const version = os.release();
-    const os_info =
-      platform.charAt(0).toUpperCase() + platform.slice(1);
+    const os_info = platform.charAt(0).toUpperCase() + platform.slice(1);
 
     message.channel.send(
       'DarK`BoT by Shiva187 rev: ' +
