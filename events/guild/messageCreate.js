@@ -46,21 +46,20 @@ module.exports = (Discord, client, message) => {
     return message.reply('No command found');
   }
 
-  if (command.permissions.le)
-    if (command.permissions.length) {
-      let invalidPerms = [];
-      for (const perm of command.permissions) {
-        if (!validPermissions.includes(perm)) {
-          return console.log(`Invalid Permissions ${perm}`);
-        }
-        if (!message.member.permissions.has(perm)) {
-          invalidPerms.push(perm);
-        }
+  if (command.permissions.length) {
+    let invalidPerms = [];
+    for (const perm of command.permissions) {
+      if (!validPermissions.includes(perm)) {
+        return console.log(`Invalid Permissions ${perm}`);
       }
-      if (invalidPerms.length) {
-        return message.channel.send(`Missing Permissions: \`${invalidPerms}\``);
+      if (!message.member.permissions.has(perm)) {
+        invalidPerms.push(perm);
       }
     }
+    if (invalidPerms.length) {
+      return message.channel.send(`Missing Permissions: \`${invalidPerms}\``);
+    }
+  }
 
   if (command) command.execute(client, message, args, Discord);
 };
