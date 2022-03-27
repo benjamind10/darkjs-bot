@@ -4,7 +4,7 @@ const giphy = require('giphy-api')(process.env.GIF_TOKEN);
 module.exports = {
   name: 'gif',
   description: 'Get gifs based on your search',
-  permissions: ['EMBED_LINKS', 'MANAGE_MESSAGES'],
+  permissions: ['SEND_MESSAGES'],
   cooldown: 10,
   async execute(client, message, args) {
     if (args.length === 0) {

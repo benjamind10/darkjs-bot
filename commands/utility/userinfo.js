@@ -6,6 +6,7 @@ module.exports = {
   description: "Get info about your account or mentiobned user's account!",
   aliases: ['ui'],
   permissions: ['SEND_MESSAGES'],
+  cooldown: 10,
   async execute(client, message, args) {
     const permissions = {
       ADMINISTRATOR: 'Administrator',

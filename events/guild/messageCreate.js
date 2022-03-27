@@ -1,4 +1,5 @@
 const cooldowns = new Map();
+
 const { Collection } = require('discord.js');
 
 module.exports = (Discord, client, message) => {
