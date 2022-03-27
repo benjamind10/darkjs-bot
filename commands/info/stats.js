@@ -36,10 +36,10 @@ module.exports = {
           .setTimestamp()
           .setThumbnail(bicon)
           .setColor('RANDOM')
-          .setFooter(
-            `Requested by ${message.author.username}#${message.author.discriminator}`,
-            message.author.displayAvatarURL
-          )
+          .setFooter({
+            text: `Requested by ${message.author.username}#${message.author.discriminator}`,
+            imageURL: message.author.displayAvatarURL,
+          })
           .addField(
             ':floppy_disk: Memory usage',
             `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(
