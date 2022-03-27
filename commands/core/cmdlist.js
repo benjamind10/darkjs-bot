@@ -9,13 +9,16 @@ module.exports = {
     let commands = client.commands.map(command => {
       return command.name;
     });
+
+    let command_count = client.commands.size;
+
     const finalCommands = commands.join('\r\n');
 
     const newEmbed = new MessageEmbed()
       .setTitle('Command List')
       .setDescription('This is all the commands the bot has')
       .addFields({
-        name: 'List of working commands:',
+        name: `List of all working commands: (${command_count})`,
         value: finalCommands,
       });
 
