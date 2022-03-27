@@ -13,6 +13,11 @@ module.exports = {
   permissions: ['SEND_MESSAGES'],
   cooldown: 10,
   async execute(client, message, args, level) {
+    let commands = client.commands.map(command => {
+      return command.name;
+    });
+
+    let command_count = client.commands.size;
     // eslint-disable-line no-unused-vars
     try {
       const cmdFiles = await readdir('./commands/');
@@ -27,7 +32,7 @@ module.exports = {
         let bicon = client.user.displayAvatarURL;
         const RynEmb = new Discord.MessageEmbed()
           .setAuthor(client.user.username, client.user.displayAvatarURL)
-          .setDescription("Infinity Bot's Stats:")
+          .setDescription("DarK`BoT's Stats:")
           .setTimestamp()
           .setThumbnail(bicon)
           .setColor('RANDOM')
@@ -55,7 +60,7 @@ module.exports = {
           .addField('👥 Users', `${client.users.cache.size}`, true)
           .addField('Servers', `${client.guilds.cache.size}`, true)
           .addField('Channels', `${client.channels.cache.size}`, true)
-          .addField('Commands Count', '``143``', true)
+          .addField('Commands Count', `${command_count}`, true)
           .addField('Library', `\`Discord.js\``, true)
           .addField('Library Version', `v${version}`, true)
           .addField(':book: Node Version', `${process.version}`, true)
@@ -73,7 +78,7 @@ module.exports = {
         message.channel.send({ embeds: [RynEmb] });
       });
     } catch (err) {
-      const errorlogs = client.channels.cache.get('747750993583669258');
+      const errorlogs = client.channels.cache.get('895362161797398578');
       message.channel.send(
         `Whoops, We got a error right now! This error has been reported to Support center!`
       );
