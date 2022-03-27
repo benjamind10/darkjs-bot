@@ -1,3 +1,5 @@
+const { px } = require('../../config');
+
 module.exports = {
   name: 'cmdlist',
   permissions: ['SEND_MESSAGES'],
@@ -20,6 +22,10 @@ module.exports = {
       .addFields({
         name: `List of all working commands: (${command_count})`,
         value: finalCommands,
+      })
+      .addFields({
+        name: 'Help',
+        value: `Type ${px}help <command name> for description.`,
       });
 
     message.channel.send({ embeds: [newEmbed] });
