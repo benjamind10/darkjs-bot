@@ -94,10 +94,9 @@ client.on('messageCreate', message => antiSpam.message(message));
 
 async function init() {
   mongoose
-    .connect(process.env.dbToken, {
+    .connect(client.config.dbToken, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useNewUrlParser: true,
     })
     .then(() => {
       console.log('Connected to MongoDB');
