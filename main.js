@@ -1,5 +1,11 @@
 const { Player } = require('discord-player');
-const { Client, Intents, Discord, Collection } = require('discord.js');
+const mongoose = require('mongoose');
+const {
+  Client,
+  Intents,
+  Discord,
+  Collection,
+} = require('discord.js');
 
 let client = new Client({
   intents: [
@@ -14,10 +20,12 @@ client.config = require('./config');
 client.commands = new Collection();
 client.eventNames = new Collection();
 client.player = new Player(client, client.config.opt.discordPlayer);
+client.dbLogin = require('./handlers/dbLogin');
 const player = client.player;
 
 player.on('trackStart', (queue, track) => {
-  if (!client.config.opt.loopMessage && queue.repeatMode !== 0) return;
+  if (!client.config.opt.loopMessage && queue.repeatMode !== 0)
+    return;
   queue.metadata.send({
     content: `🎵 Music started playing: **${track.title}** -> Channel: **${queue.connection.channel.name}** 🎧`,
   });
@@ -80,8 +88,26 @@ const antiSpam = new AntiSpam({
 
 client.on('messageCreate', message => antiSpam.message(message));
 
-['command-handler', 'event-handler'].forEach(handler => {
+['command-handler', 'event-handler', 'dbLogin'].forEach(handler => {
   require(`./handlers/${handler}`)(client, Discord);
 });
 
-client.login(client.config.TOKEN);
+async function init() {
+  mongoose
+    .connect(process.env.dbToken, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    })
+    .then(() => {
+      console.log('Connected to MongoDB');
+    })
+    .catch(err => {
+      console.log(
+        'Unable to connect to MongoDB Database.\nError: ' + err
+      );
+    });
+  await client.login(client.config.TOKEN);
+}
+
+init();
