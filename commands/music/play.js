@@ -28,8 +28,7 @@ module.exports = {
     });
 
     try {
-      if (!queue.connection)
-        await queue.connect(message.member.voice.channel);
+      if (!queue.connection) await queue.connect(message.member.voice.channel);
     } catch {
       await client.player.deleteQueue(message.guild.id);
       return message.channel.send({
@@ -38,14 +37,15 @@ module.exports = {
     }
 
     await message.channel.send({
-      content: `Your ${
-        res.playlist ? 'Playlist' : 'Track'
-      } Loading... 🎧`,
+      content: `Your ${res.playlist ? 'Playlist' : 'Track'} Loading... 🎧`,
     });
 
     if (client.config.opt.selfDeaf === false) {
       let channel = message.member.voice.channel;
       const { joinVoiceChannel } = require('@discordjs/voice');
+      if (!channel.id)
+        return await message.channel.send({ content: 'Something went wrong' });
+
       const connection = joinVoiceChannel({
         channelId: channel.id,
         guildId: channel.guild.id,
@@ -54,9 +54,7 @@ module.exports = {
       });
     }
 
-    res.playlist
-      ? queue.addTracks(res.tracks)
-      : queue.addTrack(res.tracks[0]);
+    res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
 
     if (!queue.playing) await queue.play();
   },
