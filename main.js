@@ -95,7 +95,7 @@ async function init() {
       console.log('Connected to MongoDB');
     })
     .catch(err => {
-      console.log('Unable to connect to MongoDB Database.\nError: ' + err);
+      console.log(`Unable to connect to MongoDB Database.\nError: ${err}` );
     });
   await client.login(client.config.TOKEN);
 }
