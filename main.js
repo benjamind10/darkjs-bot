@@ -17,39 +17,58 @@ client.eventNames = new Collection();
 client.player = new Player(client, client.config.opt.discordPlayer);
 client.dbLogin = require('./handlers/dbLogin');
 const player = client.player;
-
-player.on('trackStart', (queue, track) => {
-  if (!client.config.opt.loopMessage && queue.repeatMode !== 0) return;
-  queue.metadata.send({
-    content: `🎵 Music started playing: **${track.title}** -> Channel: **${queue.connection.channel.name}** 🎧`,
+try {
+  player.on('trackStart', (queue, track) => {
+    if (!client.config.opt.loopMessage && queue.repeatMode !== 0) return;
+    queue.metadata.send({
+      content: `🎵 Music started playing: **${track.title}** -> Channel: **${queue.connection.channel.name}** 🎧`,
+    });
   });
-});
+} catch (error) {
+  console.log(error);
+}
 
-player.on('trackAdd', (queue, track) => {
-  queue.metadata.send({
-    content: `**${track.title}** added to playlist. ✅`,
+try {
+  player.on('trackAdd', (queue, track) => {
+    queue.metadata.send({
+      content: `**${track.title}** added to playlist. ✅`,
+    });
   });
-});
+} catch (error) {
+  console.log(error);
+}
 
-player.on('botDisconnect', queue => {
-  queue.metadata.send({
-    content:
-      'Someone from the audio channel Im connected to kicked me out, the whole playlist has been cleared! ❌',
+try {
+  player.on('botDisconnect', queue => {
+    queue.metadata.send({
+      content:
+        'Someone from the audio channel Im connected to kicked me out, the whole playlist has been cleared! ❌',
+    });
   });
-});
+} catch (error) {
+  console.log(error);
+}
 
-player.on('channelEmpty', queue => {
-  queue.metadata.send({
-    content:
-      'I left the audio channel because there is no one on my audio channel. ❌',
+try {
+  player.on('channelEmpty', queue => {
+    queue.metadata.send({
+      content:
+        'I left the audio channel because there is no one on my audio channel. ❌',
+    });
   });
-});
+} catch (error) {
+  console.log(error);
+}
 
-player.on('queueEnd', queue => {
-  queue.metadata.send({
-    content: 'All songs are done playing. ✅',
+try {
+  player.on('queueEnd', queue => {
+    queue.metadata.send({
+      content: 'All songs are done playing. ✅',
+    });
   });
-});
+} catch (error) {
+  console.log(error);
+}
 
 // Anti Spam stuff
 const AntiSpam = require('discord-anti-spam');
@@ -95,7 +114,7 @@ async function init() {
       console.log('Connected to MongoDB');
     })
     .catch(err => {
-      console.log(`Unable to connect to MongoDB Database.\nError: ${err}` );
+      console.log(`Unable to connect to MongoDB Database.\nError: ${err}`);
     });
   await client.login(client.config.TOKEN);
 }
