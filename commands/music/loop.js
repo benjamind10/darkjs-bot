@@ -8,53 +8,53 @@ module.exports = {
   permissions: ['SEND_MESSAGES'],
 
   execute(client, message, args) {
-    const queue = client.player.getQueue(message.guild.id);
+    try {
+      const queue = client.player.getQueue(message.guild.id);
 
-    if (!queue || !queue.playing)
-      return message.channel.send({
-        content: `${message.author}, There is no music currently playing!. ❌`,
-      });
-
-    if (args.join('').toLowerCase() === 'queue') {
-      if (queue.repeatMode === 1)
+      if (!queue || !queue.playing)
         return message.channel.send({
-          content: `${message.author}, You should disable loop mode of existing music first **(${client.config.px}loop)** ❌`,
+          content: `${message.author}, There is no music currently playing!. ❌`,
         });
 
-      const success = queue.setRepeatMode(
-        queue.repeatMode === 0
-          ? QueueRepeatMode.QUEUE
-          : QueueRepeatMode.OFF
-      );
+      if (args.join('').toLowerCase() === 'queue') {
+        if (queue.repeatMode === 1)
+          return message.channel.send({
+            content: `${message.author}, You should disable loop mode of existing music first **(${client.config.px}loop)** ❌`,
+          });
 
-      return message.channel.send({
-        content: success
-          ? `Loop Mode: **${
-              queue.repeatMode === 0 ? 'Inactive' : 'Active'
-            }**, The whole sequence will repeat non-stop 🔁`
-          : `${message.author}, Something went wrong. ❌`,
-      });
-    } else {
-      if (queue.repeatMode === 2)
+        const success = queue.setRepeatMode(
+          queue.repeatMode === 0 ? QueueRepeatMode.QUEUE : QueueRepeatMode.OFF
+        );
+
         return message.channel.send({
-          content: `${message.author}, In Loop mode you must disable existing queue first **(${client.config.px}loop queue)** ❌`,
+          content: success
+            ? `Loop Mode: **${
+                queue.repeatMode === 0 ? 'Inactive' : 'Active'
+              }**, The whole sequence will repeat non-stop 🔁`
+            : `${message.author}, Something went wrong. ❌`,
         });
+      } else {
+        if (queue.repeatMode === 2)
+          return message.channel.send({
+            content: `${message.author}, In Loop mode you must disable existing queue first **(${client.config.px}loop queue)** ❌`,
+          });
 
-      const success = queue.setRepeatMode(
-        queue.repeatMode === 0
-          ? QueueRepeatMode.TRACK
-          : QueueRepeatMode.OFF
-      );
+        const success = queue.setRepeatMode(
+          queue.repeatMode === 0 ? QueueRepeatMode.TRACK : QueueRepeatMode.OFF
+        );
 
-      return message.channel.send({
-        content: success
-          ? `Loop Mode: **${
-              queue.repeatMode === 0 ? 'Inactive' : 'Active'
-            }**, Current music will be repeated non-stop (all music in the list **${
-              client.config.px
-            }loop queue**  You can repeat it with the option.) 🔂`
-          : `${message.author}, Something went wrong ❌`,
-      });
+        return message.channel.send({
+          content: success
+            ? `Loop Mode: **${
+                queue.repeatMode === 0 ? 'Inactive' : 'Active'
+              }**, Current music will be repeated non-stop (all music in the list **${
+                client.config.px
+              }loop queue**  You can repeat it with the option.) 🔂`
+            : `${message.author}, Something went wrong ❌`,
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   },
 };
