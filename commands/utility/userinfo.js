@@ -83,7 +83,7 @@ module.exports = {
         )}\``
       )
       .setThumbnail(mention.user.avatarURL())
-      .setFooter(`ID: ${mention.user.id}`, mention.user.avatarURL())
+      .setFooter({ text: `ID: ${mention.user.id}` }, mention.user.avatarURL())
       .setTimestamp()
       .setColor('RANDOM');
     message.channel.send({ embeds: [userlol] });
