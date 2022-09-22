@@ -56,7 +56,7 @@ module.exports = {
       false: 'No, The User is a Human',
     };
     const userlol = new Discord.MessageEmbed()
-      .setAuthor(`User Info`, mention.user.avatarURL())
+      .setAuthor({ text: `User Info ${mention.user.avatarURL()}` })
       .setThumbnail(usericon)
       .addField(
         `General Info`,
