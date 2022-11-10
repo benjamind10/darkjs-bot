@@ -13,94 +13,100 @@ module.exports = {
   permissions: ['SEND_MESSAGES'],
   cooldown: 10,
   async execute(client, message, args, level) {
-    function systemUptime(seconds) {
-      seconds = os.uptime();
-      var d = Math.floor(seconds / (3600 * 24));
-      var h = Math.floor((seconds % (3600 * 24)) / 3600);
-      var m = Math.floor((seconds % 3600) / 60);
-      var s = Math.floor(seconds % 60);
-
-      var dDisplay = d > 0 ? d + (d == 1 ? ' day, ' : ' days, ') : '';
-      var hDisplay = h > 0 ? h + (h == 1 ? ' hour, ' : ' hours, ') : '';
-      var mDisplay = m > 0 ? m + (m == 1 ? ' minute, ' : ' minutes, ') : '';
-      var sDisplay = s > 0 ? s + (s == 1 ? ' second' : ' seconds') : '';
-      return dDisplay + hDisplay + mDisplay + sDisplay;
-    }
-
-    let sysUptime = systemUptime();
-
-    let commands = client.commands.map(command => {
-      return command.name;
-    });
-
-    let command_count = client.commands.size;
-    // eslint-disable-line no-unused-vars
     try {
-      const cmdFiles = await readdir('./commands/');
-      let cpuLol;
-      cpuStat.usagePercent(function (err, percent, seconds) {
-        if (err) {
-          return console.log(err);
-        }
-        const duration = moment
-          .duration(client.uptime)
-          .format(' D [days], H [hrs], m [mins], s [secs]');
-        let bicon = client.user.displayAvatarURL;
-        const RynEmb = new Discord.MessageEmbed()
-          .setAuthor(client.user.username, client.user.displayAvatarURL)
-          .setDescription("DarK`BoT's Stats:")
-          .setTimestamp()
-          .setThumbnail(bicon)
-          .setColor('RANDOM')
-          .setFooter({
-            text: `Requested by ${message.author.username}#${message.author.discriminator}`,
-            imageURL: message.author.displayAvatarURL,
-          })
-          .addField(
-            ':floppy_disk: Memory usage',
-            `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(
-              os.totalmem() /
-              1024 /
-              1024
-            ).toFixed(2)} MB`,
-            true
-          )
-          .addField(':minidisc: CPU usage', `\`${percent.toFixed(2)}%\``, true)
-          .addField(
-            'CPU',
-            `\`\`\`md\n${os.cpus().map(i => `${i.model}`)[0]}\`\`\``,
-            true
-          )
-          .addField(':computer: System', `\`${os.arch()}\``, true)
-          .addField(':desktop: Platform', `\`\`${os.platform()}\`\``, true)
-          .addField('👥 Users', `${client.users.cache.size}`, true)
-          .addField('Servers', `${client.guilds.cache.size}`, true)
-          .addField('Channels', `${client.channels.cache.size}`, true)
-          .addField('Commands Count', `${command_count}`, true)
-          .addField('Library', `\`Discord.js\``, true)
-          .addField('Library Version', `v${version}`, true)
-          .addField(':book: Node Version', `${process.version}`, true)
-          .addField(
-            ':stopwatch: Uptime & Ping',
-            `${duration} / ${Math.round(
-              client.ws.ping
-            )}ms | System: ${sysUptime}`,
-            true
-          );
-        //.addField(":stopwatch: Server uptime", `${prettyMs(oss.sysUptime())}`, true)
-        //   .addField(
-        //     ':calendar_spiral: Created On',
-        //     client.user.createdAt,
-        //     true
-        //   );
-        message.channel.send({ embeds: [RynEmb] });
+      function systemUptime(seconds) {
+        seconds = os.uptime();
+        var d = Math.floor(seconds / (3600 * 24));
+        var h = Math.floor((seconds % (3600 * 24)) / 3600);
+        var m = Math.floor((seconds % 3600) / 60);
+        var s = Math.floor(seconds % 60);
+
+        var dDisplay = d > 0 ? d + (d == 1 ? ' day, ' : ' days, ') : '';
+        var hDisplay = h > 0 ? h + (h == 1 ? ' hour, ' : ' hours, ') : '';
+        var mDisplay = m > 0 ? m + (m == 1 ? ' minute, ' : ' minutes, ') : '';
+        var sDisplay = s > 0 ? s + (s == 1 ? ' second' : ' seconds') : '';
+        return dDisplay + hDisplay + mDisplay + sDisplay;
+      }
+
+      let sysUptime = systemUptime();
+
+      let commands = client.commands.map(command => {
+        return command.name;
       });
-    } catch (err) {
-      const errorlogs = client.channels.cache.get('895362161797398578');
-      message.channel.send(
-        `Whoops, We got a error right now! This error has been reported to Support center!`
-      );
-      errorlogs.send(`Error on stats commands!\n\nError:\n\n ${err}`);
+
+      let command_count = client.commands.size;
+      // eslint-disable-line no-unused-vars
+      try {
+        const cmdFiles = await readdir('./commands/');
+        let cpuLol;
+        cpuStat.usagePercent(function (err, percent, seconds) {
+          if (err) {
+            return console.log(err);
+          }
+          const duration = moment
+            .duration(client.uptime)
+            .format(' D [days], H [hrs], m [mins], s [secs]');
+          let bicon = client.user.displayAvatarURL;
+          const RynEmb = new Discord.MessageEmbed()
+            .setAuthor(client.user.username, client.user.displayAvatarURL)
+            .setDescription("DarK`BoT's Stats:")
+            .setTimestamp()
+            .setThumbnail(bicon)
+            .setColor('RANDOM')
+            .setFooter({
+              text: `Requested by ${message.author.username}#${message.author.discriminator}`,
+              imageURL: message.author.displayAvatarURL,
+            })
+            .addField(
+              ':floppy_disk: Memory usage',
+              `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(
+                2
+              )} / ${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`,
+              true
+            )
+            .addField(
+              ':minidisc: CPU usage',
+              `\`${percent.toFixed(2)}%\``,
+              true
+            )
+            .addField(
+              'CPU',
+              `\`\`\`md\n${os.cpus().map(i => `${i.model}`)[0]}\`\`\``,
+              true
+            )
+            .addField(':computer: System', `\`${os.arch()}\``, true)
+            .addField(':desktop: Platform', `\`\`${os.platform()}\`\``, true)
+            .addField('👥 Users', `${client.users.cache.size}`, true)
+            .addField('Servers', `${client.guilds.cache.size}`, true)
+            .addField('Channels', `${client.channels.cache.size}`, true)
+            .addField('Commands Count', `${command_count}`, true)
+            .addField('Library', `\`Discord.js\``, true)
+            .addField('Library Version', `v${version}`, true)
+            .addField(':book: Node Version', `${process.version}`, true)
+            .addField(
+              ':stopwatch: Uptime & Ping',
+              `${duration} / ${Math.round(
+                client.ws.ping
+              )}ms | System: ${sysUptime}`,
+              true
+            );
+          //.addField(":stopwatch: Server uptime", `${prettyMs(oss.sysUptime())}`, true)
+          //   .addField(
+          //     ':calendar_spiral: Created On',
+          //     client.user.createdAt,
+          //     true
+          //   );
+          message.channel.send({ embeds: [RynEmb] });
+        });
+      } catch (err) {
+        const errorlogs = client.channels.cache.get('895362161797398578');
+        message.channel.send(
+          `Whoops, We got a error right now! This error has been reported to Support center!`
+        );
+        errorlogs.send(`Error on stats commands!\n\nError:\n\n ${err}`);
+      }
+    } catch (e) {
+      console.log(e);
     }
   },
 };

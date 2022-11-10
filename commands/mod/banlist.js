@@ -3,8 +3,12 @@ module.exports = {
   description: 'This command returns the ban count',
   permissions: ['BAN_MEMBERS'],
   async execute(client, message, args) {
-    const banlist = await message.guild.bans.fetch();
+    try {
+      const banlist = await message.guild.bans.fetch();
 
-    await message.reply(`Ban count: ${banlist.size}`);
+      await message.reply(`Ban count: ${banlist.size}`);
+    } catch (e) {
+      console.log(e);
+    }
   },
 };
