@@ -3,7 +3,6 @@ const cooldowns = new Map();
 const { Collection } = require('discord.js');
 
 module.exports = (Discord, client, message) => {
-  try {
     const prefix = client.config.px;
 
     const validPermissions = [
@@ -89,9 +88,6 @@ module.exports = (Discord, client, message) => {
     }
 
     time_stamps.set(message.author.id, current_time);
-  } catch (e) {
-    console.log(e);
-  }
 
   try {
     command.execute(client, message, args, Discord);
