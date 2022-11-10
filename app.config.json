@@ -1,0 +1,5 @@
+{
+	"name": "darkjsbot",
+	"script": "./node_modules/.bin/nodemon main.js",
+	"max_memory_restar": "2048M"
+}
