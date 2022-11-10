@@ -3,6 +3,10 @@ module.exports = {
   description: 'Display all roles',
   permissions: ['ADMINISTRATOR', 'BAN_MEMBERS'],
   async execute(client, message, args) {
-    console.log(message.guild.roles);
+    try {
+      console.log(message.guild.roles);
+    } catch (e) {
+      console.log(e);
+    }
   },
 };

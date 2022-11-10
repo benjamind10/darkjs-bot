@@ -4,8 +4,12 @@ module.exports = {
   permissions: ['SEND_MESSAGES'],
   cooldown: 10,
   execute(client, message, args) {
-    message.channel.send(
-      `Repo Link: https://github.com/benjamind10/darkjs-bot`
-    );
+    try {
+      message.channel.send(
+        `Repo Link: https://github.com/benjamind10/darkjs-bot`
+      );
+    } catch (e) {
+      console.log(e);
+    }
   },
 };
