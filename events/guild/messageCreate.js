@@ -46,11 +46,7 @@ module.exports = (Discord, client, message) => {
 
   const command = client.commands.get(cmd);
 
-  if (!args) return;
-
-  if (command === undefined) {
-    return message.reply('No command found');
-  }
+  if (command === undefined) return;
 
   if (command.permissions.length) {
     let invalidPerms = [];
